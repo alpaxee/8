@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlushNest — SaaS-платформа для салонов красоты</title>
+<meta name="description" content="BlushNest — продуктовая IT-компания, SaaS-платформа для автоматизации записи, склада, расписания и аналитики салонов красоты.">
+</head>
+<body style="margin:0;">
+<style>
+  @media (max-width:640px){
+    section.nx-hero, section.nx-principles, section.nx-dash, section.nx-capabilities, section.nx-process, section.nx-reviews,
+    section.nx-vacancy-cta, section.nx-cta, section.nx-vac-cta,
+    section.nx-about-hero, section.nx-about-principles, section.nx-about-focus, section.nx-about-reviews, section.nx-about-cta,
+    section.nx-vac-hero,
+    section.nx-job-hero, section.nx-job-conditions, section.nx-job-calc, section.nx-job-duties, section.nx-job-support, section.nx-job-reviews, section.nx-job-faq, section.nx-job-apply,
+    section.nx-apply-form
+    { padding-left:20px !important; padding-right:20px !important; padding-top:44px !important; padding-bottom:44px !important; }
+
+    section.nx-vac-list, section.nx-vac-steps, section.nx-vac-review
+    { padding-left:20px !important; padding-right:20px !important; padding-bottom:56px !important; }
+
+    section.nx-footer{ padding:44px 20px 24px !important; }
+
+    .nx-dash .metrics{ grid-template-columns:1fr 1fr !important; }
+      .nx-job-calc .opts span{ padding:12px 18px !important; font-size:15px !important; }
+    .nx-footer li{ margin-bottom:14px !important; }
+    .nx-footer a{ display:inline-block; padding:4px 0; }
+    .nx-vac-list a.card, .nx-vac-list .card-closed{ padding:22px 20px !important; }
+  }
+  @media (max-width:380px){
+    .nx-dash .metrics{ grid-template-columns:1fr !important; }
+  }
+</style>
+<header class="nx-nav">
+  <style>
+    .nx-nav{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      position:sticky; top:0; z-index:50; background:rgba(251,243,236,.92); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line); font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    .nx-nav *{box-sizing:border-box}
+    .nx-nav .wrap{max-width:1120px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; position:relative}
+    .nx-nav .logo{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:18px; color:var(--ink); text-decoration:none; flex-shrink:0}
+    .nx-nav .links{display:flex; align-items:center; gap:20px}
+    .nx-nav .links a{font-size:14px; color:var(--ink); text-decoration:none; transition:color .15s ease; white-space:nowrap}
+    .nx-nav .links a:hover{color:var(--accent)}
+    .nx-nav .links a.cta{background:var(--accent); color:#fff; padding:9px 16px; border-radius:8px; font-weight:600}
+    .nx-nav .links a.cta:hover{color:#fff; opacity:.92}
+    .nx-nav .burger{display:none; align-items:center; justify-content:center; flex-direction:column; gap:5px; width:40px; height:40px; background:none; border:none; cursor:pointer; padding:0; margin:-8px -8px -8px 0; -webkit-tap-highlight-color:transparent}
+    .nx-nav .burger span{display:block; height:2px; width:22px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media (max-width:760px){
+      .nx-nav .wrap{padding:12px 20px}
+      .nx-nav .burger{display:flex}
+      .nx-nav .links{
+        display:none; position:absolute; top:100%; left:0; right:0;
+        flex-direction:column; align-items:stretch; gap:0;
+        background:var(--bg); border-bottom:1px solid var(--line);
+        padding:6px 20px 16px; box-shadow:0 12px 24px -16px rgba(43,27,18,.25);
+      }
+      .nx-nav .links.open{display:flex}
+      .nx-nav .links a{padding:13px 0; border-bottom:1px solid var(--line); font-size:15px}
+      .nx-nav .links a.cta{margin-top:12px; border-bottom:none; text-align:center; padding:13px 16px}
+    }
+  </style>
+  <div class="wrap">
+    <a href="index.html" class="logo">BlushNest</a>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nx-nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="nx-nav-links">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О компании</a>
+      <a href="vacancies.html">Вакансии</a>
+      <a href="apply.html" class="cta">Оставить заявку</a>
+    </nav>
+  </div>
+  <script>
+  (function(){
+    var header = document.currentScript.closest('.nx-nav');
+    if(!header) return;
+    var btn = header.querySelector('.burger');
+    var links = header.querySelector('.links');
+    btn.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+  </script>
+</header>
+<!-- ============ HERO ============ -->
+<section class="nx-hero">
+  <style>
+    .nx-hero{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC;
+      --accent:#C1602E; --accent-bright:#F0955A; --panel:#2A150C; --line:#EFE0D3;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:72px 24px 72px; box-sizing:border-box;
+    }
+    .nx-hero *{box-sizing:border-box}
+    .nx-hero .wrap{max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:center}
+    .nx-hero h1{
+      font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; letter-spacing:-.01em;
+      font-size:clamp(32px,4.2vw,52px); line-height:1.1; margin:0 0 24px;
+      animation:nx-rise .7s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .nx-hero p.lead{font-size:18px; line-height:1.6; color:var(--muted); max-width:46ch; margin:0 0 32px;
+      animation:nx-rise .7s .1s cubic-bezier(.2,.7,.2,1) both;}
+    .nx-hero .cta{display:flex; gap:12px; flex-wrap:wrap; animation:nx-rise .7s .2s cubic-bezier(.2,.7,.2,1) both;}
+    .nx-hero .btn{font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight:600; font-size:15px; padding:13px 22px; border-radius:8px;
+      text-decoration:none; display:inline-block; transition:transform .15s ease, box-shadow .15s ease;}
+    .nx-hero .btn-primary{background:var(--accent); color:#fff;}
+    .nx-hero .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px -10px rgba(193,96,46,.5);}
+    .nx-hero .btn-ghost{border:1px solid var(--line); color:var(--ink);}
+    .nx-hero .btn-ghost:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
+    .nx-hero .panel{
+      background:var(--panel); border-radius:14px; padding:22px; color:#FBEEE4;
+      box-shadow:0 20px 50px -20px rgba(42,21,12,.5);
+      animation:nx-rise .7s .15s cubic-bezier(.2,.7,.2,1) both;
+    }
+    .nx-hero .panel .ph{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px}
+    .nx-hero .panel .ph b{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:15px; font-weight:600}
+    .nx-hero .panel .ph span{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:11px; color:#D8AF95}
+    .nx-hero .panel .slots{display:flex; flex-direction:column; gap:8px}
+    .nx-hero .panel .slot{display:flex; align-items:center; gap:12px; background:#331C0F; border-radius:10px; padding:11px 13px; transition:transform .15s ease}
+    .nx-hero .panel .slot:hover{transform:translateX(4px)}
+    .nx-hero .panel .slot .t{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; color:#D8AF95; width:44px; flex-shrink:0}
+    .nx-hero .panel .slot .who{flex:1; font-size:13px}
+    .nx-hero .panel .slot .who b{display:block; font-weight:600; font-size:13px}
+    .nx-hero .panel .slot .who span{font-size:11px; color:#D8AF95}
+    .nx-hero .panel .slot .status{width:8px; height:8px; border-radius:50%; flex-shrink:0}
+    .nx-hero .panel .slot .status.ok{background:#F0955A}
+    .nx-hero .panel .slot .status.wait{background:#5B4A3D}
+    .nx-hero .stats{display:flex; gap:36px; margin-top:44px; flex-wrap:wrap;
+      animation:nx-rise .7s .25s cubic-bezier(.2,.7,.2,1) both;}
+    .nx-hero .stat b{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:28px; display:block; color:var(--ink)}
+    .nx-hero .stat span{font-size:13px; color:var(--muted)}
+    @keyframes nx-rise{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:translateY(0)}}
+    @media (max-width:860px){ .nx-hero .wrap{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-hero *{animation:none !important} }
+  </style>
+
+  <div class="wrap">
+    <div>
+      <h1>Салон красоты, собранный в одном экране</h1>
+      <p class="lead">BlushNest — продуктовая IT-компания. Мы делаем SaaS-платформу, которая соединяет запись, расписание мастеров, склад материалов и аналитику в одном рабочем пространстве. Первая отрасль, для которой мы это построили, — салоны красоты и студии ухода.</p>
+      <div class="cta">
+        <a href="#platform" class="btn btn-primary">Смотреть платформу</a>
+        <a href="mailto:hello@blushnest.io" class="btn btn-ghost">Запросить демо</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>40</b><span>человек в продуктовой команде</span></div>
+        <div class="stat"><b>25+</b><span>городов на платформе</span></div>
+        <div class="stat"><b>SaaS</b><span>собственная облачная разработка</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ph"><b>Расписание · сегодня</b><span>7 сентября</span></div>
+      <div class="slots">
+        <div class="slot"><span class="t">10:12</span><div class="who"><b>Анна К. — маникюр</b><span>мастер Ольга</span></div><span class="status ok"></span></div>
+        <div class="slot"><span class="t">11:30</span><div class="who"><b>Ирина П. — стрижка</b><span>мастер Светлана</span></div><span class="status ok"></span></div>
+        <div class="slot"><span class="t">12:05</span><div class="who"><b>Мария С. — окрашивание</b><span>мастер Ольга</span></div><span class="status wait"></span></div>
+        <div class="slot"><span class="t">13:20</span><div class="who"><b>Свободный слот</b><span>любой мастер</span></div><span class="status wait"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ПРОБЛЕМЫ, КОТОРЫЕ РЕШАЕМ ============ -->
+<section class="nx-problems">
+  <style>
+    .nx-problems{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-problems *{box-sizing:border-box}
+    .nx-problems .wrap{max-width:1120px; margin:0 auto}
+    .nx-problems .eyebrow{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; color:var(--accent); display:block; margin-bottom:10px}
+    .nx-problems h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(24px,3vw,34px); margin:0 0 12px}
+    .nx-problems p.sub{color:var(--muted); font-size:16px; max-width:60ch; margin:0 0 48px; line-height:1.6}
+    .nx-problems .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+    .nx-problems .card{background:#fff; padding:28px 24px; transition:transform .3s ease, background .2s ease;
+      opacity:0; transform:translateY(20px);}
+    .nx-problems .card.is-visible{opacity:1; transform:translateY(0)}
+    .nx-problems .card:hover{background:#FFF7F1; transform:translateY(-4px)}
+    .nx-problems .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px; margin-bottom:16px; display:block}
+    .nx-problems .card h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:17px; font-weight:600; margin:0 0 8px}
+    .nx-problems .card p{font-size:14px; line-height:1.6; color:var(--muted); margin:0}
+    @media (max-width:860px){ .nx-problems .grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-problems .card{opacity:1 !important; transform:none !important} }
+  </style>
+
+  <div class="wrap">
+    <span class="eyebrow">Знакомо?</span>
+    <h2>Кому и зачем нужна BlushNest</h2>
+    <p class="sub">Мы делаем платформу для владельцев салонов красоты и небольших сетей студий ухода — от одного мастера до нескольких точек. Если хотя бы одна ситуация ниже вам знакома — платформа для вас.</p>
+    <div class="grid">
+      <div class="card"><span class="num">01</span><h3>Запись теряется между каналами</h3><p>Часть приходит в директ, часть — в мессенджер, часть — по телефону. Пока их сводят вручную, что-то забывается или дублируется.</p></div>
+      <div class="card"><span class="num">02</span><h3>Склад материалов живёт в голове</h3><p>Остатки не совпадают с реальностью, лак или краска заканчиваются в разгар записи, а вручную сверять некогда.</p></div>
+      <div class="card"><span class="num">03</span><h3>Нет времени на развитие</h3><p>Вместо того чтобы обучать мастеров и привлекать новых клиентов, весь день уходит на рутинную переписку и учёт.</p></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.currentScript.closest('.nx-problems');
+    if(!root || !('IntersectionObserver' in window)) return;
+    var cards = root.querySelectorAll('.card');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.transitionDelay = (Array.prototype.indexOf.call(cards, e.target) * 80) + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.2});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
+</section>
+
+
+<!-- ============ ПРИНЦИПЫ КОМПАНИИ (01–04) ============ -->
+<section class="nx-principles" id="platform">
+  <style>
+    .nx-principles{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-principles *{box-sizing:border-box}
+    .nx-principles .wrap{max-width:1120px; margin:0 auto}
+    .nx-principles h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3vw,36px); margin:0 0 12px; letter-spacing:-.01em}
+    .nx-principles p.sub{color:var(--muted); font-size:16px; max-width:56ch; margin:0 0 48px; line-height:1.6}
+    .nx-principles .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+    .nx-principles .card{background:var(--bg); padding:28px 24px; transition:transform .3s ease, background .2s ease;
+      opacity:0; transform:translateY(20px);}
+    .nx-principles .card.is-visible{opacity:1; transform:translateY(0)}
+    .nx-principles .card:hover{background:#FFF7F1; transform:translateY(-4px)}
+    .nx-principles .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px; margin-bottom:16px; display:block}
+    .nx-principles .card h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:17px; font-weight:600; margin:0 0 8px}
+    .nx-principles .card p{font-size:14px; line-height:1.6; color:var(--muted); margin:0}
+    @media (max-width:860px){ .nx-principles .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .nx-principles .grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-principles .card{opacity:1 !important; transform:none !important} }
+  </style>
+
+  <div class="wrap">
+    <h2>Мы делаем продукт, а не продаём товары</h2>
+    <p class="sub">BlushNest — IT-компания. Розничная торговля — первая отрасль, для которой наша команда написала программное решение, но не последняя.</p>
+    <div class="grid">
+      <div class="card"><span class="num">01</span><h3>Своя разработка</h3><p>Проектируем и развиваем продукт внутри команды — от исследования задач до релизов.</p></div>
+      <div class="card"><span class="num">02</span><h3>SaaS-платформа</h3><p>Магазины работают через единый облачный сервис, без установки и локальных серверов.</p></div>
+      <div class="card"><span class="num">03</span><h3>Единая команда</h3><p>Продукт, разработка, поддержка и операционные процессы работают как одно целое.</p></div>
+      <div class="card"><span class="num">04</span><h3>Автоматизация</h3><p>Переводим ручные операции — запись, склад, расчёты — в понятные цифровые процессы.</p></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.currentScript.closest('.nx-principles');
+    if(!root || !('IntersectionObserver' in window)) return;
+    var cards = root.querySelectorAll('.card');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.transitionDelay = (Array.prototype.indexOf.call(cards, e.target) * 80) + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.2});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
+</section>
+
+
+<!-- ============ СНИМОК РАБОЧЕГО СТОЛА ============ -->
+<section class="nx-dash">
+  <style>
+    .nx-dash{
+      --ink:#2B1B12; --muted:#D8AF95; --panel:#2A150C; --accent:#F0955A; --card:#331C0F; --line:#402011;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--panel); color:#FBEEE4;
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-dash *{box-sizing:border-box}
+    .nx-dash .wrap{max-width:1120px; margin:0 auto; display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center}
+    .nx-dash h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(24px,3vw,34px); margin:0 0 16px}
+    .nx-dash p{color:var(--muted); line-height:1.7; font-size:15px; margin:0 0 14px; max-width:44ch}
+    .nx-dash .board{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px}
+    .nx-dash .board-head{display:flex; justify-content:space-between; align-items:center; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; color:var(--muted); margin-bottom:18px}
+    .nx-dash .live{color:var(--accent)}
+    .nx-dash .metrics{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:18px}
+    .nx-dash .m{background:#3D2313; border-radius:10px; padding:14px}
+    .nx-dash .m b{display:block; font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:22px}
+    .nx-dash .m span{font-size:11px; color:var(--muted)}
+    .nx-dash .queue{display:flex; flex-direction:column; gap:8px; font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px}
+    .nx-dash .queue div{display:flex; justify-content:space-between; padding:10px 12px; background:#3D2313; border-radius:8px; transition:transform .15s ease}
+    .nx-dash .queue div:hover{transform:translateX(4px)}
+    .nx-dash .queue .status{color:var(--accent)}
+  </style>
+
+  <div class="wrap">
+    <div>
+      <h2>Один экран вместо горы накладных</h2>
+      <p>Запись, расписание мастеров и склад материалов живут в общем интерфейсе: статусы обновляются в реальном времени, а администратор видит загрузку салона на день вперёд.</p>
+      <p>Владелец видит ту же картину, что и мастер за креслом — от новой записи до расхода материалов.</p>
+    </div>
+    <div class="board">
+      <div class="board-head"><span>blushnest / workspace</span><span class="live">● online</span></div>
+      <div class="metrics">
+        <div class="m"><b>18</b><span>новых записей</span></div>
+        <div class="m"><b>12</b><span>в процессе</span></div>
+        <div class="m"><b>30</b><span>завершено сегодня</span></div>
+      </div>
+      <div class="queue">
+        <div><span>#204 · новая запись</span><span class="status">10:30</span></div>
+        <div><span>#203 · услуга в процессе</span><span class="status">11:15</span></div>
+        <div><span>#202 · расчёт и оплата</span><span class="status">12:00</span></div>
+        <div><span>#201 · завершено</span><span class="status">12:40</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ВОЗМОЖНОСТИ ПЛАТФОРМЫ (01–06) ============ -->
+<section class="nx-capabilities">
+  <style>
+    .nx-capabilities{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-capabilities *{box-sizing:border-box}
+    .nx-capabilities .wrap{max-width:1120px; margin:0 auto}
+    .nx-capabilities h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3vw,36px); margin:0 0 12px}
+    .nx-capabilities p.sub{color:var(--muted); max-width:56ch; margin:0 0 48px; line-height:1.6}
+    .nx-capabilities .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .nx-capabilities .card{background:#fff; border:1px solid var(--line); border-radius:12px; padding:26px; transition:border-color .2s ease, transform .3s ease, box-shadow .3s ease;
+      opacity:0; transform:translateY(20px);}
+    .nx-capabilities .card.is-visible{opacity:1; transform:translateY(0)}
+    .nx-capabilities .card:hover{border-color:var(--accent); transform:translateY(-4px); box-shadow:0 16px 32px -20px rgba(193,96,46,.4)}
+    .nx-capabilities .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px; display:block; margin-bottom:14px}
+    .nx-capabilities .card h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:16px; margin:0 0 8px}
+    .nx-capabilities .card p{font-size:14px; color:var(--muted); line-height:1.6; margin:0}
+    @media (max-width:860px){ .nx-capabilities .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .nx-capabilities .grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-capabilities .card{opacity:1 !important; transform:none !important} }
+  </style>
+
+  <div class="wrap">
+    <h2>Функции платформы</h2>
+    <p class="sub">Процессы салона собраны как связанные модули одной системы, а не как набор разрозненных программ и бумажных журналов.</p>
+    <div class="grid">
+      <div class="card"><span class="num">01</span><h3>Онлайн-запись</h3><p>Календарь, выбор мастера и услуги, напоминания клиенту перед визитом.</p></div>
+      <div class="card"><span class="num">02</span><h3>Расписание мастеров</h3><p>Загрузка по дням, окна для срочной записи, контроль занятости кресел.</p></div>
+      <div class="card"><span class="num">03</span><h3>Склад материалов</h3><p>Остатки расходников и автосписание при закрытии услуги.</p></div>
+      <div class="card"><span class="num">04</span><h3>Программа лояльности</h3><p>Баллы, скидки постоянным клиентам, история визитов и предпочтений.</p></div>
+      <div class="card"><span class="num">05</span><h3>Аналитика</h3><p>Продажи, средний чек, частота повторных покупок — без сведения таблиц вручную.</p></div>
+      <div class="card"><span class="num">06</span><h3>Командный доступ</h3><p>Роли для администратора, мастера и владельца сети салонов.</p></div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.currentScript.closest('.nx-capabilities');
+    if(!root || !('IntersectionObserver' in window)) return;
+    var cards = root.querySelectorAll('.card');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.transitionDelay = (Array.prototype.indexOf.call(cards, e.target) * 70) + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.2});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
+</section>
+
+
+<!-- ============ ЧТО ПРОИСХОДИТ ПОСЛЕ ЗАЯВКИ (клиентский онбординг) ============ -->
+<section class="nx-process">
+  <style>
+    .nx-process{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-process *{box-sizing:border-box}
+    .nx-process .wrap{max-width:1120px; margin:0 auto}
+    .nx-process h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3vw,36px); margin:0 0 48px}
+    .nx-process .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid var(--line)}
+    .nx-process .step{padding:28px 24px 0; border-right:1px solid var(--line)}
+    .nx-process .step:last-child{border-right:none}
+    .nx-process .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px}
+    .nx-process h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:18px; margin:14px 0 8px}
+    .nx-process p{font-size:14px; color:var(--muted); line-height:1.6; margin:0}
+    @media (max-width:760px){
+      .nx-process .steps{grid-template-columns:1fr}
+      .nx-process .step{border-right:none; border-top:1px solid var(--line); padding-top:24px}
+      .nx-process .step:first-child{border-top:none}
+    }
+  </style>
+
+  <div class="wrap">
+    <h2>Что происходит после того, как вы оставили заявку</h2>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><h3>Заявка и знакомство</h3><p>Вы оставляете заявку, мы созваниваемся и разбираемся, как устроены запись, склад и расписание в вашем салоне.</p></div>
+      <div class="step"><span class="num">02</span><h3>Подключение</h3><p>Настраиваем платформу под ваш ассортимент и переносим текущие остатки — без потери данных и без простоя.</p></div>
+      <div class="step"><span class="num">03</span><h3>Работа и поддержка</h3><p>Вы ведёте запись и склад через BlushNest, а мы на связи через оператора поддержки, если что-то непонятно.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ОТЗЫВЫ КЛИЕНТОВ ============ -->
+<section class="nx-reviews">
+  <style>
+    .nx-reviews{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:88px 24px; box-sizing:border-box;
+    }
+    .nx-reviews *{box-sizing:border-box}
+    .nx-reviews .wrap{max-width:1120px; margin:0 auto}
+    .nx-reviews h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3vw,36px); margin:0 0 12px}
+    .nx-reviews p.sub{color:var(--muted); max-width:56ch; margin:0 0 48px; line-height:1.6}
+    .nx-reviews .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .nx-reviews .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:26px; transition:transform .3s ease, box-shadow .3s ease;
+      opacity:0; transform:translateY(20px);}
+    .nx-reviews .card.is-visible{opacity:1; transform:translateY(0)}
+    .nx-reviews .card:hover{transform:translateY(-5px); box-shadow:0 16px 32px -18px rgba(193,96,46,.35)}
+    .nx-reviews .stars{color:var(--accent); font-size:14px; margin-bottom:12px; letter-spacing:2px}
+    .nx-reviews .quote{font-size:14px; line-height:1.65; color:var(--ink); margin:0 0 18px}
+    .nx-reviews .who{display:flex; align-items:center; gap:10px}
+    .nx-reviews .avatar{width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:14px; flex-shrink:0}
+    .nx-reviews .name{font-size:13px; font-weight:600; margin:0}
+    .nx-reviews .role{font-size:12px; color:var(--muted); margin:0}
+    @media (max-width:860px){ .nx-reviews .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .nx-reviews .grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-reviews .card{opacity:1 !important; transform:none !important} }
+  </style>
+
+  <div class="wrap">
+    <h2>Что говорят салоны, которые уже перешли на BlushNest</h2>
+    <p class="sub">Отзывы владельцев и администраторов, которые ведут запись, склад и расписание через платформу.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Раньше запись жила в трёх местах: тетрадь, Instagram и голова администратора. Теперь всё в одном экране, и накладок стало в разы меньше.</p>
+        <div class="who"><div class="avatar">Е</div><div><p class="name">Елена</p><p class="role">владелица салона, Казань</p></div></div>
+      </div>
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Складской учёт — то, ради чего мы вообще подключились. Списание идёт автоматически, и стало видно, куда реально уходит товар.</p>
+        <div class="who"><div class="avatar">О</div><div><p class="name">Ольга</p><p class="role">администратор, сеть студий, Самара</p></div></div>
+      </div>
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Понравилось, что внедрение заняло пару дней, а не месяц. Сотрудники привыкли к системе почти сразу, вопросов было немного.</p>
+        <div class="who"><div class="avatar">И</div><div><p class="name">Ирина</p><p class="role">владелица барбершопа, Ростов-на-Дону</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.currentScript.closest('.nx-reviews');
+    if(!root || !('IntersectionObserver' in window)) return;
+    var cards = root.querySelectorAll('.card');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.transitionDelay = (Array.prototype.indexOf.call(cards, e.target) * 90) + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.2});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
+</section>
+
+
+<!-- ============ CTA НА ВАКАНСИЮ ============ -->
+<section class="nx-vacancy-cta">
+  <style>
+    .nx-vacancy-cta{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:80px 24px; box-sizing:border-box; text-align:center;
+    }
+    .nx-vacancy-cta *{box-sizing:border-box}
+    .nx-vacancy-cta .wrap{max-width:640px; margin:0 auto}
+    .nx-vacancy-cta h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(24px,3.2vw,34px); margin:0 0 14px}
+    .nx-vacancy-cta p{color:var(--muted); font-size:16px; line-height:1.6; margin:0 0 28px}
+    .nx-vacancy-cta .btn{background:var(--accent); color:#fff; font-weight:600; padding:13px 24px; border-radius:8px; text-decoration:none; display:inline-block; transition:transform .15s ease, box-shadow .15s ease}
+    .nx-vacancy-cta .btn:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(193,96,46,.5)}
+  </style>
+
+  <div class="wrap">
+    <h2>Работайте над цифровым продуктом вместе с BlushNest</h2>
+    <p>Сейчас открыт набор оператора текстовой поддержки пользователей SaaS-платформы — удалённо, без звонков и продаж.</p>
+    <a href="vacancy-operator.html" class="btn">Смотреть вакансию</a>
+  </div>
+</section>
+
+
+<!-- ============ CTA НА ДЕМО ============ -->
+<section class="nx-cta">
+  <style>
+    .nx-cta{
+      --panel:#2A150C; --accent:#F0955A; --muted:#D8AF95; --line:#402011;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--panel); color:#FBEEE4;
+      padding:88px 24px; box-sizing:border-box; text-align:center;
+    }
+    .nx-cta *{box-sizing:border-box}
+    .nx-cta .wrap{max-width:640px; margin:0 auto}
+    .nx-cta h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3.4vw,40px); margin:0 0 16px}
+    .nx-cta p{color:var(--muted); margin:0 0 32px; line-height:1.6; font-size:16px}
+    .nx-cta .btns{display:flex; gap:14px; justify-content:center; flex-wrap:wrap}
+    .nx-cta .btn{font-weight:600; padding:14px 26px; border-radius:8px; text-decoration:none; display:inline-block; transition:transform .15s ease, box-shadow .15s ease}
+    .nx-cta .btn-primary{background:var(--accent); color:#2A150C;}
+    .nx-cta .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(240,149,90,.5)}
+    .nx-cta .btn-ghost{border:1px solid var(--line); color:#FBEEE4;}
+    .nx-cta .btn-ghost:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
+  </style>
+
+  <div class="wrap">
+    <h2>Посмотрите, как BlushNest наводит порядок в салоне</h2>
+    <p>Расскажем про платформу, покажем модули вживую и обсудим задачи именно вашей сети или салона.</p>
+    <div class="btns">
+      <a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="btn btn-primary">Написать о демо</a>
+      <a href="about.html" class="btn btn-ghost">Узнать о компании</a>
+    </div>
+  </div>
+</section>
+<section class="nx-footer">
+  <style>
+    .nx-footer{
+      --panel:#241408; --accent:#F0955A; --muted:#B4967D; --line:#3B2313;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--panel); color:#FBEEE4;
+      padding:64px 24px 32px; box-sizing:border-box;
+    }
+    .nx-footer *{box-sizing:border-box}
+    .nx-footer .wrap{max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px; padding-bottom:36px; border-bottom:1px solid var(--line)}
+    .nx-footer .brand{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:19px; font-weight:600; margin:0 0 12px}
+    .nx-footer .about{color:var(--muted); font-size:13px; line-height:1.6; max-width:32ch}
+    .nx-footer h4{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 16px; font-weight:600}
+    .nx-footer ul{list-style:none; margin:0; padding:0}
+    .nx-footer li{margin-bottom:10px}
+    .nx-footer a{color:#FBEEE4; text-decoration:none; font-size:14px; transition:color .15s ease}
+    .nx-footer a:hover{color:var(--accent)}
+    .nx-footer .bottom{max-width:1120px; margin:24px auto 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted)}
+    @media (max-width:760px){ .nx-footer .wrap{grid-template-columns:1fr 1fr; gap:32px 24px} }
+    @media (max-width:480px){ .nx-footer .wrap{grid-template-columns:1fr} }
+  </style>
+  <div class="wrap">
+    <div>
+      <p class="brand">BlushNest</p>
+      <p class="about">Продуктовая IT-компания и разработчик SaaS-платформы для автоматизации салонов красоты.</p>
+    </div>
+    <div>
+      <h4>Платформа</h4>
+      <ul>
+        <li><a href="index.html#platform">О продукте</a></li>
+        <li><a href="index.html#platform">Возможности</a></li>
+        <li><a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest">Демо</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Компания</h4>
+      <ul>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="vacancies.html">Вакансии</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <ul>
+        <li><a href="mailto:hello@blushnest.io">hello@blushnest.io</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2026 BlushNest. ООО «БлашНест». Продуктовая IT-компания</span>
+  </div>
+</section>
+</body>
+</html>

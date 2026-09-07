@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вакансии — BlushNest</title>
+<meta name="description" content="Открытые вакансии в BlushNest: оператор текстовой поддержки, тестировщик, менеджер по работе с партнёрами.">
+</head>
+<body style="margin:0;">
+<style>
+  @media (max-width:640px){
+    section.nx-hero, section.nx-principles, section.nx-dash, section.nx-capabilities, section.nx-process, section.nx-reviews,
+    section.nx-vacancy-cta, section.nx-cta, section.nx-vac-cta,
+    section.nx-about-hero, section.nx-about-principles, section.nx-about-focus, section.nx-about-reviews, section.nx-about-cta,
+    section.nx-vac-hero,
+    section.nx-job-hero, section.nx-job-conditions, section.nx-job-calc, section.nx-job-duties, section.nx-job-support, section.nx-job-reviews, section.nx-job-faq, section.nx-job-apply,
+    section.nx-apply-form
+    { padding-left:20px !important; padding-right:20px !important; padding-top:44px !important; padding-bottom:44px !important; }
+
+    section.nx-vac-list, section.nx-vac-steps, section.nx-vac-review
+    { padding-left:20px !important; padding-right:20px !important; padding-bottom:56px !important; }
+
+    section.nx-footer{ padding:44px 20px 24px !important; }
+
+    .nx-dash .metrics{ grid-template-columns:1fr 1fr !important; }
+      .nx-job-calc .opts span{ padding:12px 18px !important; font-size:15px !important; }
+    .nx-footer li{ margin-bottom:14px !important; }
+    .nx-footer a{ display:inline-block; padding:4px 0; }
+    .nx-vac-list a.card, .nx-vac-list .card-closed{ padding:22px 20px !important; }
+  }
+  @media (max-width:380px){
+    .nx-dash .metrics{ grid-template-columns:1fr !important; }
+  }
+</style>
+<header class="nx-nav">
+  <style>
+    .nx-nav{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      position:sticky; top:0; z-index:50; background:rgba(251,243,236,.92); backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line); font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    .nx-nav *{box-sizing:border-box}
+    .nx-nav .wrap{max-width:1120px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; justify-content:space-between; position:relative}
+    .nx-nav .logo{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:18px; color:var(--ink); text-decoration:none; flex-shrink:0}
+    .nx-nav .links{display:flex; align-items:center; gap:20px}
+    .nx-nav .links a{font-size:14px; color:var(--ink); text-decoration:none; transition:color .15s ease; white-space:nowrap}
+    .nx-nav .links a:hover{color:var(--accent)}
+    .nx-nav .links a.cta{background:var(--accent); color:#fff; padding:9px 16px; border-radius:8px; font-weight:600}
+    .nx-nav .links a.cta:hover{color:#fff; opacity:.92}
+    .nx-nav .burger{display:none; align-items:center; justify-content:center; flex-direction:column; gap:5px; width:40px; height:40px; background:none; border:none; cursor:pointer; padding:0; margin:-8px -8px -8px 0; -webkit-tap-highlight-color:transparent}
+    .nx-nav .burger span{display:block; height:2px; width:22px; background:var(--ink); border-radius:2px; transition:transform .2s ease, opacity .2s ease}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+    .nx-nav .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    @media (max-width:760px){
+      .nx-nav .wrap{padding:12px 20px}
+      .nx-nav .burger{display:flex}
+      .nx-nav .links{
+        display:none; position:absolute; top:100%; left:0; right:0;
+        flex-direction:column; align-items:stretch; gap:0;
+        background:var(--bg); border-bottom:1px solid var(--line);
+        padding:6px 20px 16px; box-shadow:0 12px 24px -16px rgba(43,27,18,.25);
+      }
+      .nx-nav .links.open{display:flex}
+      .nx-nav .links a{padding:13px 0; border-bottom:1px solid var(--line); font-size:15px}
+      .nx-nav .links a.cta{margin-top:12px; border-bottom:none; text-align:center; padding:13px 16px}
+    }
+  </style>
+  <div class="wrap">
+    <a href="index.html" class="logo">BlushNest</a>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nx-nav-links">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="nx-nav-links">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О компании</a>
+      <a href="vacancies.html">Вакансии</a>
+      <a href="apply.html" class="cta">Оставить заявку</a>
+    </nav>
+  </div>
+  <script>
+  (function(){
+    var header = document.currentScript.closest('.nx-nav');
+    if(!header) return;
+    var btn = header.querySelector('.burger');
+    var links = header.querySelector('.links');
+    btn.addEventListener('click', function(){
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  })();
+  </script>
+</header>
+<!-- ============ HERO ============ -->
+<section class="nx-vac-hero">
+  <style>
+    .nx-vac-hero{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:64px 24px 56px; box-sizing:border-box;
+    }
+    .nx-vac-hero *{box-sizing:border-box}
+    .nx-vac-hero .wrap{max-width:920px; margin:0 auto}
+    .nx-vac-hero .eyebrow{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; color:var(--accent); display:block; margin-bottom:16px}
+    .nx-vac-hero h1{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3.6vw,40px); margin:0 0 20px}
+    .nx-vac-hero p.lead{font-size:16px; line-height:1.65; color:var(--muted); max-width:64ch; margin:0}
+  </style>
+
+  <div class="wrap">
+    <span class="eyebrow">Открытые позиции · 1</span>
+    <h1>Собираем команду</h1>
+    <p class="lead">Основной набор сейчас идёт на операторов текстовой поддержки. Набор тестировщиков и менеджеров по работе с партнёрами временно закрыт.</p>
+  </div>
+</section>
+
+
+<!-- ============ СПИСОК ВАКАНСИЙ ============ -->
+<section class="nx-vac-list">
+  <style>
+    .nx-vac-list{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:0 24px 88px; box-sizing:border-box;
+    }
+    .nx-vac-list *{box-sizing:border-box}
+    .nx-vac-list .wrap{max-width:920px; margin:0 auto; display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+    .nx-vac-list a.card{background:#fff; padding:26px 26px; display:flex; justify-content:space-between; align-items:center; gap:24px; text-decoration:none; color:var(--ink); transition:background .2s ease}
+    .nx-vac-list a.card:hover{background:#FFF7F1}
+    .nx-vac-list a.card:hover .arrow{transform:translateX(4px)}
+    .nx-vac-list .tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px}
+    .nx-vac-list .tag{font-size:11px; background:#FBF3EC; border:1px solid var(--line); border-radius:999px; padding:4px 10px; color:var(--muted)}
+    .nx-vac-list h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:18px; margin:0 0 6px}
+    .nx-vac-list p{font-size:14px; color:var(--muted); line-height:1.5; margin:0; max-width:56ch}
+    .nx-vac-list .side{text-align:right; white-space:nowrap; flex-shrink:0}
+    .nx-vac-list .pay{font-weight:600; font-size:15px; display:block; margin-bottom:4px}
+    .nx-vac-list .arrow{color:var(--accent); font-size:14px; display:inline-block; transition:transform .15s ease}
+    .nx-vac-list .card-closed{background:#F6F2EC; cursor:default; position:relative; padding-left:30px}
+    .nx-vac-list .card-closed::before{content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background:#B9A98F}
+    .nx-vac-list .card-closed h3{color:#786C5A}
+    .nx-vac-list .card-closed p{color:#9A8F7C}
+    .nx-vac-list .card-closed .pay{color:#786C5A}
+    .nx-vac-list .card-closed .arrow{color:#9A8F7C; font-size:13px}
+    .nx-vac-list .tag-closed{background:#EDE7DC; border:1px solid #DDD2BE; color:#6B6154; font-weight:600; display:inline-flex; align-items:center; gap:6px}
+    .nx-vac-list .tag-closed .dot{width:14px; height:14px; display:inline-flex; align-items:center; justify-content:center}
+    @media (max-width:700px){ .nx-vac-list a.card, .nx-vac-list .card-closed{flex-direction:column; align-items:flex-start; gap:14px} .nx-vac-list .side{text-align:left} }
+  </style>
+
+  <div class="wrap">
+    <a href="vacancy-operator.html" class="card">
+      <div>
+        <div class="tags"><span class="tag">Основной набор</span><span class="tag">Без опыта</span><span class="tag">Обучение</span></div>
+        <h3>Оператор текстовой поддержки</h3>
+        <p>Отвечаете администраторам и мастерам в чате: помогаете разобраться с записью, расписанием и складом.</p>
+      </div>
+      <div class="side"><span class="pay">от 65 000 ₽</span><span class="arrow">Смотреть →</span></div>
+    </a>
+    <div class="card card-closed">
+      <div>
+        <div class="tags"><span class="tag tag-closed"><svg class="dot" viewBox="0 0 16 16" width="12" height="12" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#6B6154" stroke-width="1.3"/><path d="M8 4.5V8l2.5 1.5" stroke="#6B6154" stroke-width="1.3" stroke-linecap="round"/></svg>Мест нет</span><span class="tag">Обучение 2–3 недели</span></div>
+        <h3>Тестировщик / аналитик платформы</h3>
+        <p>Проверяете сценарии в интерфейсе до релиза: запись, расписание, склад — и описываете найденные баги.</p>
+      </div>
+      <div class="side"><span class="pay">от 60 000 ₽</span><span class="arrow">Наберём позже</span></div>
+    </div>
+    <div class="card card-closed">
+      <div>
+        <div class="tags"><span class="tag tag-closed"><svg class="dot" viewBox="0 0 16 16" width="12" height="12" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#6B6154" stroke-width="1.3"/><path d="M8 4.5V8l2.5 1.5" stroke="#6B6154" stroke-width="1.3" stroke-linecap="round"/></svg>Мест нет</span><span class="tag">Наставник</span></div>
+        <h3>Менеджер по работе с партнёрами</h3>
+        <p>Первый разговор с салоном, который хочет подключиться к платформе: задача, сроки, условия внедрения.</p>
+      </div>
+      <div class="side"><span class="pay">от 80 000 ₽</span><span class="arrow">Наберём позже</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ КАК ПРОХОДИТ ОТБОР (01–04) ============ -->
+<section class="nx-vac-steps">
+  <style>
+    .nx-vac-steps{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:0 24px 88px; box-sizing:border-box;
+    }
+    .nx-vac-steps *{box-sizing:border-box}
+    .nx-vac-steps .wrap{max-width:920px; margin:0 auto}
+    .nx-vac-steps .eyebrow{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; color:var(--accent); display:block; margin-bottom:10px}
+    .nx-vac-steps h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(22px,3vw,30px); margin:0 0 40px}
+    .nx-vac-steps .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:0; border-top:1px solid var(--line)}
+    .nx-vac-steps .step{padding:24px 20px 0; border-right:1px solid var(--line)}
+    .nx-vac-steps .step:last-child{border-right:none}
+    .nx-vac-steps .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px}
+    .nx-vac-steps h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:16px; margin:12px 0 6px}
+    .nx-vac-steps p{font-size:13px; color:var(--muted); line-height:1.55; margin:0}
+    @media (max-width:760px){
+      .nx-vac-steps .steps{grid-template-columns:1fr 1fr}
+      .nx-vac-steps .step{border-right:none; padding-top:20px}
+    }
+    @media (max-width:480px){ .nx-vac-steps .steps{grid-template-columns:1fr} }
+  </style>
+
+  <div class="wrap">
+    <span class="eyebrow">Как проходит отбор</span>
+    <h2>Четыре шага, без марафона собеседований</h2>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><h3>Заявка</h3><p>Короткая форма на сайте. Резюме прикладывать не обязательно.</p></div>
+      <div class="step"><span class="num">02</span><h3>Разговор с HR</h3><p>Обсуждаем задачу, формат и условия — до того, как вы согласитесь на что-либо.</p></div>
+      <div class="step"><span class="num">03</span><h3>Знакомство с командой</h3><p>Смотрим, как вы рассуждаете и подходите к задачам.</p></div>
+      <div class="step"><span class="num">04</span><h3>Оффер и введение</h3><p>Фиксируем условия и вводим в работу с платформой.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ ОТЗЫВЫ ============ -->
+<section class="nx-vac-review">
+  <style>
+    .nx-vac-review{
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#fff; --accent:#C1602E; --line:#F1E3D6;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
+      padding:0 24px 88px; box-sizing:border-box;
+    }
+    .nx-vac-review *{box-sizing:border-box}
+    .nx-vac-review .wrap{max-width:920px; margin:0 auto}
+    .nx-vac-review .eyebrow{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; color:var(--accent); display:block; margin-bottom:10px}
+    .nx-vac-review h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(22px,3vw,30px); margin:0 0 32px}
+    .nx-vac-review .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .nx-vac-review .card{background:#FBF3EC; border:1px solid var(--line); border-radius:14px; padding:24px; transition:transform .3s ease, box-shadow .3s ease;
+      opacity:0; transform:translateY(20px);}
+    .nx-vac-review .card.is-visible{opacity:1; transform:translateY(0)}
+    .nx-vac-review .card:hover{transform:translateY(-5px); box-shadow:0 16px 32px -18px rgba(193,96,46,.3)}
+    .nx-vac-review .stars{color:var(--accent); font-size:14px; margin-bottom:12px; letter-spacing:2px}
+    .nx-vac-review .quote{font-size:14px; line-height:1.65; color:var(--ink); margin:0 0 18px}
+    .nx-vac-review .who{display:flex; align-items:center; gap:10px}
+    .nx-vac-review .avatar{width:36px; height:36px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:14px; flex-shrink:0}
+    .nx-vac-review .name{font-size:13px; font-weight:600; margin:0}
+    .nx-vac-review .role{font-size:12px; color:var(--muted); margin:0}
+    @media (max-width:860px){ .nx-vac-review .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .nx-vac-review .grid{grid-template-columns:1fr} }
+    @media (prefers-reduced-motion:reduce){ .nx-vac-review .card{opacity:1 !important; transform:none !important} }
+  </style>
+
+  <div class="wrap">
+    <span class="eyebrow">Отзывы</span>
+    <h2>Что говорят те, кто уже в команде</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Откликнулась без резюме, через два дня уже проходила введение в продукт. Условия обсудили сразу — без сюрпризов потом.</p>
+        <div class="who"><div class="avatar">А</div><div><p class="name">Алина</p><p class="role">оператор поддержки, 8 мес.</p></div></div>
+      </div>
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Понравилось, что график обсуждают заранее, а не ставят перед фактом. Доход считается прозрачно.</p>
+        <div class="who"><div class="avatar">Д</div><div><p class="name">Дмитрий</p><p class="role">оператор поддержки, 5 мес.</p></div></div>
+      </div>
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">Заполнила форму вечером, ответили на следующий день. Никакой лишней бюрократии на этапе отклика.</p>
+        <div class="who"><div class="avatar">М</div><div><p class="name">Марина</p><p class="role">оператор поддержки, 3 мес.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var root = document.currentScript.closest('.nx-vac-review');
+    if(!root || !('IntersectionObserver' in window)) return;
+    var cards = root.querySelectorAll('.card');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.style.transitionDelay = (Array.prototype.indexOf.call(cards, e.target) * 90) + 'ms';
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:.2});
+    cards.forEach(function(c){ io.observe(c); });
+  })();
+  </script>
+</section>
+
+
+<!-- ============ CTA ============ -->
+<section class="nx-vac-cta">
+  <style>
+    .nx-vac-cta{
+      --panel:#2A150C; --accent:#F0955A; --muted:#D8AF95;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--panel); color:#FBEEE4;
+      padding:72px 24px; box-sizing:border-box; text-align:center;
+    }
+    .nx-vac-cta *{box-sizing:border-box}
+    .nx-vac-cta .wrap{max-width:640px; margin:0 auto}
+    .nx-vac-cta h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(22px,3vw,28px); margin:0 0 14px}
+    .nx-vac-cta p{color:var(--muted); font-size:15px; line-height:1.6; margin:0 0 26px}
+    .nx-vac-cta .btn{background:var(--accent); color:#2A150C; font-weight:600; padding:13px 24px; border-radius:8px; text-decoration:none; display:inline-block; transition:transform .15s ease, box-shadow .15s ease}
+    .nx-vac-cta .btn:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(240,149,90,.5)}
+  </style>
+
+  <div class="wrap">
+    <h2>Не нашли свою позицию?</h2>
+    <p>Опишите словами, чем хотите заниматься — разберёмся вместе, куда это может подойти.</p>
+    <a href="apply.html" class="btn">Оставить заявку</a>
+  </div>
+</section>
+<section class="nx-footer">
+  <style>
+    .nx-footer{
+      --panel:#241408; --accent:#F0955A; --muted:#B4967D; --line:#3B2313;
+      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--panel); color:#FBEEE4;
+      padding:64px 24px 32px; box-sizing:border-box;
+    }
+    .nx-footer *{box-sizing:border-box}
+    .nx-footer .wrap{max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:32px; padding-bottom:36px; border-bottom:1px solid var(--line)}
+    .nx-footer .brand{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:19px; font-weight:600; margin:0 0 12px}
+    .nx-footer .about{color:var(--muted); font-size:13px; line-height:1.6; max-width:32ch}
+    .nx-footer h4{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin:0 0 16px; font-weight:600}
+    .nx-footer ul{list-style:none; margin:0; padding:0}
+    .nx-footer li{margin-bottom:10px}
+    .nx-footer a{color:#FBEEE4; text-decoration:none; font-size:14px; transition:color .15s ease}
+    .nx-footer a:hover{color:var(--accent)}
+    .nx-footer .bottom{max-width:1120px; margin:24px auto 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted)}
+    @media (max-width:760px){ .nx-footer .wrap{grid-template-columns:1fr 1fr; gap:32px 24px} }
+    @media (max-width:480px){ .nx-footer .wrap{grid-template-columns:1fr} }
+  </style>
+  <div class="wrap">
+    <div>
+      <p class="brand">BlushNest</p>
+      <p class="about">Продуктовая IT-компания и разработчик SaaS-платформы для автоматизации салонов красоты.</p>
+    </div>
+    <div>
+      <h4>Платформа</h4>
+      <ul>
+        <li><a href="index.html#platform">О продукте</a></li>
+        <li><a href="index.html#platform">Возможности</a></li>
+        <li><a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest">Демо</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Компания</h4>
+      <ul>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="vacancies.html">Вакансии</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Контакты</h4>
+      <ul>
+        <li><a href="mailto:hello@blushnest.io">hello@blushnest.io</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="bottom">
+    <span>© 2026 BlushNest. ООО «БлашНест». Продуктовая IT-компания</span>
+  </div>
+</section>
+</body>
+</html>
