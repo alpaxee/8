@@ -131,6 +131,11 @@
     .nx-apply-form .review .stars{color:var(--accent); font-size:14px; margin-bottom:10px; letter-spacing:2px}
     .nx-apply-form .review .quote{font-size:14px; line-height:1.6; color:var(--ink); margin:0 0 10px; font-style:italic}
     .nx-apply-form .review .name{font-size:12px; color:var(--muted); margin:0}
+    .nx-apply-form .success{display:none; text-align:center; padding:12px 4px}
+    .nx-apply-form .success.show{display:block}
+    .nx-apply-form .success .mark{width:52px; height:52px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 18px}
+    .nx-apply-form .success h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:22px; margin:0 0 10px}
+    .nx-apply-form .success p{font-size:15px; color:var(--muted); line-height:1.6; margin:0}
   </style>
 
   <div class="wrap">
@@ -139,7 +144,7 @@
     <p class="lead">Резюме и портфолио не обязательны — короткой анкеты достаточно, чтобы мы поняли, с кем связаться и по какой позиции.</p>
 
     <div class="box">
-      <form onsubmit="return false;">
+      <form id="nx-apply-form-el">
         <div class="field">
           <label for="nx-name">Как вас зовут *</label>
           <input id="nx-name" type="text" placeholder="Имя" required>
@@ -169,7 +174,26 @@
         <button type="submit" class="submit">Отправить заявку</button>
         <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку указанных данных. С вами свяжутся по указанному контакту.</p>
       </form>
+
+      <div class="success" id="nx-apply-success">
+        <div class="mark">✓</div>
+        <h2>Спасибо!</h2>
+        <p>Возвращайтесь в наш диалог в Telegram — там и продолжим.</p>
+      </div>
     </div>
+
+    <script>
+    (function(){
+      var form = document.getElementById('nx-apply-form-el');
+      var success = document.getElementById('nx-apply-success');
+      if(!form || !success) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        form.style.display = 'none';
+        success.classList.add('show');
+      });
+    })();
+    </script>
 
     <div class="review">
       <div class="stars">★★★★★</div>
@@ -201,7 +225,7 @@
   <div class="wrap">
     <div>
       <p class="brand">BlushNest</p>
-      <p class="about">Продуктовая IT-компания и разработчик SaaS-платформы для автоматизации салонов красоты.</p>
+      <p class="about">Быстрорастущая компания в сфере удалённой административной поддержки. Предоставляем операторов и администраторов для салонов красоты, онлайн-школ и интернет-магазинов.</p>
     </div>
     <div>
       <h4>Платформа</h4>

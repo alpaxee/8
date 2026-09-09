@@ -564,6 +564,11 @@
     }
     .nx-job-apply .submit:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(240,149,90,.5)}
     .nx-job-apply .fineprint{font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5}
+    .nx-job-apply .success{display:none; text-align:center; padding:12px 4px; max-width:520px; margin:32px auto 0; background:#331C0F; border:1px solid var(--line); border-radius:16px; padding:30px}
+    .nx-job-apply .success.show{display:block}
+    .nx-job-apply .success .mark{width:52px; height:52px; border-radius:50%; background:var(--accent); color:#2A150C; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 18px; font-weight:700}
+    .nx-job-apply .success h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:22px; margin:0 0 10px; color:#FBEEE4}
+    .nx-job-apply .success p{font-size:15px; color:var(--muted); line-height:1.6; margin:0}
   </style>
 
   <div class="wrap">
@@ -572,7 +577,7 @@
     <p>Заполните форму — мы свяжемся с вами по указанному контакту и расскажем про условия.</p>
   </div>
 
-  <form class="box" onsubmit="return false;">
+  <form class="box" id="nx-job-form-el">
     <div class="field">
       <label for="nx-job-name">Как вас зовут *</label>
       <input id="nx-job-name" type="text" placeholder="Имя" required>
@@ -592,6 +597,25 @@
     <button type="submit" class="submit">Отправить заявку</button>
     <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку указанных данных.</p>
   </form>
+
+  <div class="success" id="nx-job-success">
+    <div class="mark">✓</div>
+    <h3>Спасибо!</h3>
+    <p>Возвращайтесь в наш диалог в Telegram — там и продолжим.</p>
+  </div>
+
+  <script>
+  (function(){
+    var form = document.getElementById('nx-job-form-el');
+    var success = document.getElementById('nx-job-success');
+    if(!form || !success) return;
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      form.style.display = 'none';
+      success.classList.add('show');
+    });
+  })();
+  </script>
 </section>
 <section class="nx-footer">
   <style>
@@ -616,7 +640,7 @@
   <div class="wrap">
     <div>
       <p class="brand">BlushNest</p>
-      <p class="about">Продуктовая IT-компания и разработчик SaaS-платформы для автоматизации салонов красоты.</p>
+      <p class="about">Быстрорастущая компания в сфере удалённой административной поддержки. Предоставляем операторов и администраторов для салонов красоты, онлайн-школ и интернет-магазинов.</p>
     </div>
     <div>
       <h4>Платформа</h4>
