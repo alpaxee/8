@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <link rel="icon" type="image/png" href="logo-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Оставить заявку — BlushNest</title>
-<meta name="description" content="Оставьте заявку на вакансию в BlushNest — без резюме, короткая форма.">
+<title>Как откликнуться — BlushNest</title>
+<meta name="description" content="Как откликнуться на вакансию в BlushNest — напишите нам в Telegram.">
 </head>
 <body style="margin:0;">
 <style>
@@ -76,7 +76,7 @@
       <a href="index.html">Главная</a>
       <a href="about.html">О компании</a>
       <a href="vacancies.html">Вакансии</a>
-      <a href="apply.html" class="cta">Оставить заявку</a>
+      <a href="apply.html" class="cta">Как откликнуться</a>
     </nav>
   </div>
   <script>
@@ -98,108 +98,42 @@
   })();
   </script>
 </header>
-<!-- ============ HERO + ФОРМА ============ -->
+<!-- ============ КАК ОТКЛИКНУТЬСЯ ============ -->
 <section class="nx-apply-form">
   <style>
     .nx-apply-form{
-      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3;
+      --ink:#2B1B12; --muted:#8C6F5C; --bg:#FBF3EC; --accent:#C1602E; --line:#EFE0D3; --panel:#2A150C;
       font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background:var(--bg); color:var(--ink);
       padding:64px 24px 96px; box-sizing:border-box;
     }
     .nx-apply-form *{box-sizing:border-box}
-    .nx-apply-form .wrap{max-width:640px; margin:0 auto}
+    .nx-apply-form .wrap{max-width:640px; margin:0 auto; text-align:center}
     .nx-apply-form .eyebrow{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; color:var(--accent); display:block; margin-bottom:16px}
     .nx-apply-form h1{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(26px,3.6vw,38px); margin:0 0 14px}
-    .nx-apply-form p.lead{font-size:16px; line-height:1.6; color:var(--muted); margin:0 0 36px}
-    .nx-apply-form .box{background:#fff; border:1px solid var(--line); border-radius:16px; padding:32px}
-    .nx-apply-form label{display:block; font-size:13px; color:var(--muted); margin:0 0 6px}
-    .nx-apply-form .field{margin-bottom:20px}
-    .nx-apply-form input, .nx-apply-form select, .nx-apply-form textarea{
-      width:100%; border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-size:16px;
-      font-family:system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color:var(--ink); background:#FFFBF8; transition:border-color .15s ease;
-    }
-    .nx-apply-form input:focus, .nx-apply-form select:focus, .nx-apply-form textarea:focus{
-      outline:none; border-color:var(--accent);
-    }
-    .nx-apply-form textarea{resize:vertical; min-height:90px}
-    .nx-apply-form .submit{
-      width:100%; background:var(--accent); color:#fff; font-weight:600; font-size:15px;
-      border:none; border-radius:8px; padding:14px; cursor:pointer; transition:transform .15s ease, box-shadow .15s ease;
-    }
-    .nx-apply-form .submit:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(193,96,46,.5)}
-    .nx-apply-form .fineprint{font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5}
-    .nx-apply-form .review{margin-top:24px; background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 24px; text-align:center}
-    .nx-apply-form .review .stars{color:var(--accent); font-size:14px; margin-bottom:10px; letter-spacing:2px}
-    .nx-apply-form .review .quote{font-size:14px; line-height:1.6; color:var(--ink); margin:0 0 10px; font-style:italic}
-    .nx-apply-form .review .name{font-size:12px; color:var(--muted); margin:0}
-    .nx-apply-form .success{display:none; text-align:center; padding:12px 4px}
-    .nx-apply-form .success.show{display:block}
-    .nx-apply-form .success .mark{width:52px; height:52px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 18px}
-    .nx-apply-form .success h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:22px; margin:0 0 10px}
-    .nx-apply-form .success p{font-size:15px; color:var(--muted); line-height:1.6; margin:0}
+    .nx-apply-form p.lead{font-size:16px; line-height:1.6; color:var(--muted); margin:0 auto 44px; max-width:52ch}
+    .nx-apply-form .steps{max-width:820px; margin:0 auto; text-align:left; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+    .nx-apply-form .step{background:#fff; padding:26px 22px}
+    .nx-apply-form .step .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px; display:block; margin-bottom:14px}
+    .nx-apply-form .step h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:16px; margin:0 0 8px}
+    .nx-apply-form .step p{font-size:14px; color:var(--muted); line-height:1.6; margin:0}
+    .nx-apply-form .btn-row{margin-top:36px}
+    .nx-apply-form .btn{background:var(--panel); color:#fff; font-weight:600; padding:15px 34px; border-radius:8px; display:inline-block; font-size:15px}
+    @media (max-width:760px){ .nx-apply-form .steps{grid-template-columns:1fr} }
   </style>
 
   <div class="wrap">
     <span class="eyebrow">Отклик</span>
-    <h1>Оставить заявку</h1>
-    <p class="lead">Резюме и портфолио не обязательны — короткой анкеты достаточно, чтобы мы поняли, с кем связаться и по какой позиции.</p>
+    <h1>Как откликнуться</h1>
+    <p class="lead">Резюме и отдельная анкета не нужны — напишите нам в Telegram, и мы обсудим всё в переписке.</p>
 
-    <div class="box">
-      <form id="nx-apply-form-el">
-        <div class="field">
-          <label for="nx-name">Как вас зовут *</label>
-          <input id="nx-name" type="text" placeholder="Имя" required>
-        </div>
-        <div class="field">
-          <label for="nx-contact">Telegram или телефон *</label>
-          <input id="nx-contact" type="text" placeholder="@username или +7 ..." required>
-        </div>
-        <div class="field">
-          <label for="nx-role">Направление *</label>
-          <select id="nx-role" required>
-            <option value="">Выберите позицию</option>
-            <option>Оператор текстовой поддержки</option>
-            <option>Менеджер по работе с партнёрами</option>
-            <option>Тестировщик / аналитик</option>
-            <option>Пока не определился</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="nx-city">Город</label>
-          <input id="nx-city" type="text" placeholder="Необязательно">
-        </div>
-        <div class="field">
-          <label for="nx-about">Пара слов о себе</label>
-          <textarea id="nx-about" placeholder="Необязательно"></textarea>
-        </div>
-        <button type="submit" class="submit">Отправить заявку</button>
-        <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку указанных данных. С вами свяжутся по указанному контакту.</p>
-      </form>
-
-      <div class="success" id="nx-apply-success">
-        <div class="mark">✓</div>
-        <h2>Спасибо!</h2>
-        <p>Возвращайтесь в наш диалог в Telegram — там и продолжим.</p>
-      </div>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><h3>Вопросы по условиям</h3><p>Ответим про график, ставку и формат работы.</p></div>
+      <div class="step"><span class="num">02</span><h3>Финальное согласование</h3><p>Договоримся о дате старта и разберём детали.</p></div>
+      <div class="step"><span class="num">03</span><h3>Введение в работу</h3><p>Пришлём инструкции и доступы для старта.</p></div>
     </div>
 
-    <script>
-    (function(){
-      var form = document.getElementById('nx-apply-form-el');
-      var success = document.getElementById('nx-apply-success');
-      if(!form || !success) return;
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        form.style.display = 'none';
-        success.classList.add('show');
-      });
-    })();
-    </script>
-
-    <div class="review">
-      <div class="stars">★★★★★</div>
-      <p class="quote">«Заполнила форму вечером, ответили на следующий день. Никакой лишней бюрократии.»</p>
-      <p class="name">Марина — оператор поддержки, 3 мес. в команде</p>
+    <div class="btn-row">
+      <span class="btn">Telegram</span>
     </div>
   </div>
 </section>

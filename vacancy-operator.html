@@ -76,7 +76,7 @@
       <a href="index.html">Главная</a>
       <a href="about.html">О компании</a>
       <a href="vacancies.html">Вакансии</a>
-      <a href="apply.html" class="cta">Оставить заявку</a>
+      <a href="apply.html" class="cta">Как откликнуться</a>
     </nav>
   </div>
   <script>
@@ -150,6 +150,7 @@
     </div>
     <div class="tags">
       <span class="tag">Только текстовый чат</span>
+      <span class="tag">Свободный график</span>
       <span class="tag">Работа с IT-продуктом</span>
       <span class="tag">Удалённый формат</span>
     </div>
@@ -194,7 +195,7 @@
     <h2>Понятный формат работы</h2>
     <div class="grid">
       <div class="card"><span class="num">01</span><h3>Удалённо</h3><p>Работайте из подходящего места со стабильным интернетом и компьютером.</p></div>
-      <div class="card"><span class="num">02</span><h3>Смены 4 / 6 / 8 часов</h3><p>Продолжительность смены выбирается в рамках согласованного графика.</p></div>
+      <div class="card"><span class="num">02</span><h3>Свободный график, от 2 часов</h3><p>Смены от 2 часов, вы сами выбираете продолжительность в рамках согласованного графика.</p></div>
       <div class="card"><span class="num">03</span><h3>Введение в продукт</h3><p>База знаний, инструкции и помощь команды для знакомства с платформой.</p></div>
       <div class="card"><span class="num">04</span><h3>380 ₽/час</h3><p>Прозрачная почасовая ставка. Доход зависит от фактической загрузки.</p></div>
     </div>
@@ -258,6 +259,7 @@
       <div class="row">
         <label class="group-label">Часов в день</label>
         <div class="opts" data-nx-group="hours">
+          <label><input type="radio" name="nx-job-hours" value="2"><span>2 часа</span></label>
           <label><input type="radio" name="nx-job-hours" value="4"><span>4 часа</span></label>
           <label><input type="radio" name="nx-job-hours" value="6"><span>6 часов</span></label>
           <label><input type="radio" name="nx-job-hours" value="8" checked><span>8 часов</span></label>
@@ -531,7 +533,7 @@
     </details>
     <details>
       <summary>Где отправить отклик?</summary>
-      <p class="a">Заполните форму ниже — этого достаточно, чтобы мы связались с вами по указанному контакту.</p>
+      <p class="a">Продолжите переписку в том же Telegram-диалоге, где вы уже с нами общаетесь.</p>
     </details>
   </div>
 </section>
@@ -565,58 +567,34 @@
     }
     .nx-job-apply .submit:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(240,149,90,.5)}
     .nx-job-apply .fineprint{font-size:12px; color:var(--muted); margin-top:14px; line-height:1.5}
-    .nx-job-apply .success{display:none; text-align:center; padding:12px 4px; max-width:520px; margin:32px auto 0; background:#331C0F; border:1px solid var(--line); border-radius:16px; padding:30px}
-    .nx-job-apply .success.show{display:block}
-    .nx-job-apply .success .mark{width:52px; height:52px; border-radius:50%; background:var(--accent); color:#2A150C; display:flex; align-items:center; justify-content:center; font-size:24px; margin:0 auto 18px; font-weight:700}
-    .nx-job-apply .success h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:22px; margin:0 0 10px; color:#FBEEE4}
-    .nx-job-apply .success p{font-size:15px; color:var(--muted); line-height:1.6; margin:0}
+    .nx-job-apply .intro{text-align:center; margin-bottom:48px}
+    .nx-job-apply .intro h2{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-weight:600; font-size:clamp(24px,3.4vw,34px); margin:0 auto 14px}
+    .nx-job-apply .intro p{color:var(--muted); max-width:52ch; margin:0 auto; line-height:1.65; font-size:15px}
+    .nx-job-apply .steps{max-width:920px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+    .nx-job-apply .step{background:#331C0F; padding:28px 24px}
+    .nx-job-apply .step .num{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; color:var(--accent); font-size:13px; display:block; margin-bottom:14px}
+    .nx-job-apply .step h3{font-family:ui-serif, Georgia, 'Times New Roman', serif; font-size:16px; margin:0 0 8px}
+    .nx-job-apply .step p{font-size:14px; color:var(--muted); line-height:1.6; margin:0}
+    .nx-job-apply .cta-row{max-width:920px; margin:32px auto 0; text-align:center}
+    .nx-job-apply .btn{background:var(--accent); color:#2A150C; font-weight:600; padding:15px 34px; border-radius:8px; display:inline-block; font-size:15px}
+    @media (max-width:760px){ .nx-job-apply .steps{grid-template-columns:1fr} }
   </style>
 
-  <div class="wrap">
+  <div class="intro">
     <span class="eyebrow">Как откликнуться</span>
-    <h2>Оставить заявку</h2>
-    <p>Заполните форму — мы свяжемся с вами по указанному контакту и расскажем про условия.</p>
+    <h2>Продолжим в Telegram</h2>
+    <p>Вы уже пишете нам в Telegram — вернитесь в этот же диалог, там всё и обсудим.</p>
   </div>
 
-  <form class="box" id="nx-job-form-el">
-    <div class="field">
-      <label for="nx-job-name">Как вас зовут *</label>
-      <input id="nx-job-name" type="text" placeholder="Имя" required>
-    </div>
-    <div class="field">
-      <label for="nx-job-contact">Telegram или телефон *</label>
-      <input id="nx-job-contact" type="text" placeholder="@username или +7 ..." required>
-    </div>
-    <div class="field">
-      <label for="nx-job-city">Город</label>
-      <input id="nx-job-city" type="text" placeholder="Необязательно">
-    </div>
-    <div class="field">
-      <label for="nx-job-about">Пара слов о себе</label>
-      <textarea id="nx-job-about" placeholder="Необязательно"></textarea>
-    </div>
-    <button type="submit" class="submit">Отправить заявку</button>
-    <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку указанных данных.</p>
-  </form>
-
-  <div class="success" id="nx-job-success">
-    <div class="mark">✓</div>
-    <h3>Спасибо!</h3>
-    <p>Возвращайтесь в наш диалог в Telegram — там и продолжим.</p>
+  <div class="steps">
+    <div class="step"><span class="num">01</span><h3>Вопросы по условиям</h3><p>Ответим про график, ставку и формат работы — всё в переписке.</p></div>
+    <div class="step"><span class="num">02</span><h3>Финальное согласование</h3><p>Договоримся о дате старта и разберём детали, которые остались непонятны.</p></div>
+    <div class="step"><span class="num">03</span><h3>Введение в работу</h3><p>Пришлём инструкции и доступы, чтобы вы могли приступить без лишних вопросов.</p></div>
   </div>
 
-  <script>
-  (function(){
-    var form = document.getElementById('nx-job-form-el');
-    var success = document.getElementById('nx-job-success');
-    if(!form || !success) return;
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      form.style.display = 'none';
-      success.classList.add('show');
-    });
-  })();
-  </script>
+  <div class="cta-row">
+    <span class="btn">Telegram</span>
+  </div>
 </section>
 <section class="nx-footer">
   <style>
