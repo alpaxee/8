@@ -330,7 +330,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 </script>
 <script>
 /* Mobile drawer */
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   var burger  = document.querySelector('.nav-burger');
   var overlay = document.querySelector('.mob-overlay');
   var drawer  = document.querySelector('.mob-drawer');
@@ -351,11 +351,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   }
   burger.addEventListener('click', openMenu);
   overlay.addEventListener('click', closeMenu);
-  drawer.querySelector('.mob-close').addEventListener('click', closeMenu);
+  var closeBtn = drawer.querySelector('.mob-close');
+  if(closeBtn) closeBtn.addEventListener('click', closeMenu);
   drawer.querySelectorAll('.mob-nav a, .mob-cta-btn').forEach(function(a){
     a.addEventListener('click', closeMenu);
   });
-})();
+});
 </script>
 
 <div class="mob-overlay"></div>

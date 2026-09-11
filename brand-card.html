@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlushNest — Brand Card</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:      #FBF3EC;
+    --white:      #FFFFFF;
+    --dark:       #2A150C;
+    --text:       #2B1B12;
+    --accent:     #C1602E;
+    --muted:      #8C6F5C;
+    --sand:       #D8AF95;
+    --peach:      #F0955A;
+    --border:     #EFE0D3;
+    --cream-dark: #FBEEE4;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    padding: 40px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .label {
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+  }
+
+  /* ── HEADER ── */
+  .bc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .bc-logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+  .bc-logo span {
+    color: var(--accent);
+  }
+  .bc-meta {
+    text-align: right;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── GRID ── */
+  .bc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 600px) { .bc-grid { grid-template-columns: 1fr; } }
+
+  .bc-block {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    border: 1px solid var(--border);
+  }
+  .bc-block.full { grid-column: 1 / -1; }
+  .bc-block.dark { background: var(--dark); border-color: var(--dark); }
+
+  /* ── PALETTE ── */
+  .palette-row {
+    display: flex;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 56px;
+    margin-bottom: 20px;
+  }
+  .swatch {
+    flex: 1;
+    position: relative;
+    cursor: default;
+  }
+  .swatch:hover::after {
+    content: attr(data-hex);
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--muted);
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .palette-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .palette-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 140px;
+  }
+  .swatch-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.07);
+  }
+  .swatch-info { line-height: 1.4; }
+  .swatch-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .swatch-hex  { font-size: 11px; color: var(--muted); font-family: 'Inter', monospace; }
+
+  /* ── TYPE ── */
+  .type-sample {
+    margin-bottom: 20px;
+  }
+  .type-head {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .type-head-label {
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .type-body-sample {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 4px;
+  }
+  .type-body-label { font-size: 11px; color: var(--sand); }
+
+  .type-showcase {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--cream);
+    border-radius: 10px;
+  }
+  .type-showcase .big {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .type-showcase .small {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── HERO TEXT ── */
+  .hero-headline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .hero-tagline {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .cta-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── BRAND STORY ── */
+  .story-text {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+  }
+  .story-text strong { color: var(--text); font-weight: 500; }
+
+  /* ── STATS DARK ── */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 4px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--cream-dark);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-desc {
+    font-size: 11px;
+    color: var(--sand);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+  }
+
+  /* ── POSITIONING ── */
+  .pos-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .tag {
+    font-size: 12px;
+    color: var(--accent);
+    background: rgba(193,96,46,0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  .pos-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-top: 14px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="bc-header">
+  <div>
+    <div class="label">Brand Card</div>
+    <div class="bc-logo">Blush<span>Nest</span></div>
+  </div>
+  <div class="bc-meta">
+    SaaS-платформа для салонов красоты<br>
+    Продуктовая IT-компания<br>
+    hello@blushnest.io · blushnest.ru
+  </div>
+</header>
+
+<div class="bc-grid">
+
+  <!-- PALETTE -->
+  <div class="bc-block full">
+    <div class="label">Цветовая палитра</div>
+    <div class="palette-row">
+      <div class="swatch" style="background:#FBF3EC" data-hex="#FBF3EC"></div>
+      <div class="swatch" style="background:#FBEEE4" data-hex="#FBEEE4"></div>
+      <div class="swatch" style="background:#EFE0D3" data-hex="#EFE0D3"></div>
+      <div class="swatch" style="background:#D8AF95" data-hex="#D8AF95"></div>
+      <div class="swatch" style="background:#8C6F5C" data-hex="#8C6F5C"></div>
+      <div class="swatch" style="background:#C1602E" data-hex="#C1602E"></div>
+      <div class="swatch" style="background:#F0955A" data-hex="#F0955A"></div>
+      <div class="swatch" style="background:#2B1B12" data-hex="#2B1B12"></div>
+      <div class="swatch" style="background:#2A150C" data-hex="#2A150C"></div>
+    </div>
+    <div class="palette-list">
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#FBF3EC"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Cream</div>
+          <div class="swatch-hex">#FBF3EC — основной фон</div>
+        </div>
+      </div>
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#C1602E"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Terracotta</div>
+          <div class="swatch-hex">#C1602E — акцент, CTA</div>
+        </div>
+      </div>
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#2B1B12"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Espresso</div>
+          <div class="swatch-hex">#2B1B12 — основной текст</div>
+        </div>
+      </div>
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#8C6F5C"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Warm Muted</div>
+          <div class="swatch-hex">#8C6F5C — вторичный текст</div>
+        </div>
+      </div>
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#D8AF95"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Sand</div>
+          <div class="swatch-hex">#D8AF95 — декоративный</div>
+        </div>
+      </div>
+      <div class="palette-item">
+        <div class="swatch-dot" style="background:#2A150C"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Dark Espresso</div>
+          <div class="swatch-hex">#2A150C — тёмная секция</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="bc-block">
+    <div class="label">Типографика</div>
+    <div class="type-sample">
+      <div class="type-head">Playfair Display</div>
+      <div class="type-head-label">Заголовочный · serif · 400/600</div>
+      <div class="type-body-sample">Inter / System-UI</div>
+      <div class="type-body-label">Текстовый · sans-serif · 300–500</div>
+    </div>
+    <div class="type-showcase">
+      <div class="big">Один экран<br>вместо хаоса</div>
+      <div class="small">Запись, расписание и склад — в одном рабочем пространстве для вашего салона.</div>
+    </div>
+  </div>
+
+  <!-- POSITIONING -->
+  <div class="bc-block">
+    <div class="label">Позиционирование</div>
+    <div class="pos-tags">
+      <span class="tag">SaaS / B2B</span>
+      <span class="tag">Beauty Tech</span>
+      <span class="tag">Автоматизация</span>
+      <span class="tag">Россия / СНГ</span>
+    </div>
+    <div class="pos-desc">
+      Не маркетплейс и не агрегатор — <strong>собственная продуктовая IT-компания</strong>. Продают программное решение, а не товары. Tone of voice — сдержанный, профессиональный, тёплый: как хороший старший коллега, а не продавец.
+    </div>
+  </div>
+
+  <!-- HERO / HEADLINE -->
+  <div class="bc-block full">
+    <div class="label">Hero — заголовок и tagline</div>
+    <div class="hero-headline">Салон красоты,<br>собранный в одном экране</div>
+    <div class="hero-tagline">
+      BlushNest — продуктовая IT-компания. Платформа соединяет онлайн-запись, расписание мастеров, складской учёт и аналитику в едином рабочем пространстве — без тетрадей, мессенджеров и ручного сведения.
+    </div>
+    <div class="cta-row">
+      <a class="btn-primary" href="#">Смотреть платформу</a>
+      <a class="btn-ghost" href="#">Запросить демо</a>
+    </div>
+  </div>
+
+  <!-- BRAND STORY -->
+  <div class="bc-block full">
+    <div class="label">Brand Story</div>
+    <p class="story-text">
+      <strong>BlushNest</strong> — продуктовая IT-компания из России. Команда из 40 человек написала SaaS-платформу специально для владельцев салонов красоты и студий ухода — от одного мастера до небольшой сети. Главная идея: все процессы салона — запись, расписание, склад, лояльность, аналитика — должны жить <strong>в одном экране</strong>, а не между тетрадью, директом и головой администратора.<br><br>
+      Платформа работает в 25+ городах через единый облачный сервис — без локальных серверов и сложного внедрения. Типичный срок старта — пара дней. Бренд позиционирует себя как <strong>технологическую компанию в индустрии красоты</strong>, а не как сервис для записи или маркетплейс: первая отрасль, но не последняя.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="bc-block dark">
+    <div class="label" style="color: var(--sand);">Цифры бренда</div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">40</div>
+        <div class="stat-desc">человек<br>в команде</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">25+</div>
+        <div class="stat-desc">городов<br>на платформе</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">SaaS</div>
+        <div class="stat-desc">собственная<br>разработка</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TONE -->
+  <div class="bc-block">
+    <div class="label">Tone of Voice</div>
+    <div class="pos-desc" style="margin-top: 0;">
+      <strong>Сдержанный и экспертный</strong> — говорит как коллега, который знает индустрию изнутри.<br><br>
+      <strong>Тёплый, не холодный</strong> — не корпоративный сухарь, но и не барахолка с восклицательными знаками.<br><br>
+      <strong>Конкретный</strong> — не «увеличьте прибыль», а «запись перестанет теряться между каналами».<br><br>
+      <strong>Визуал</strong>: тёплые кремово-терракотовые тона, засечная типографика, рабочие интерфейсные скриншоты платформы как часть дизайна.
+    </div>
+  </div>
+
+</div><!-- /bc-grid -->
+
+</body>
+</html>
