@@ -27,8 +27,8 @@
   .nav-burger{display:flex}
   .nav-cta{display:none}
 }
-.nav-open .mob-overlay{opacity:1;pointer-events:all}
-.nav-open .mob-drawer{transform:translateX(0)}
+.mob-overlay.is-open{opacity:1;pointer-events:all}
+.mob-drawer.is-open{transform:translateX(0)}
 .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-burger.open span:nth-child(2){opacity:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
@@ -77,27 +77,28 @@
 <script>
 /* Mobile drawer */
 (function(){
-  var burger = document.querySelector('.nav-burger');
+  var burger  = document.querySelector('.nav-burger');
   var overlay = document.querySelector('.mob-overlay');
   var drawer  = document.querySelector('.mob-drawer');
-  var nav     = document.querySelector('.nav');
-  if(!burger) return;
+  if(!burger || !overlay || !drawer) return;
   function openMenu(){
-    nav.classList.add('nav-open');
+    overlay.classList.add('is-open');
+    drawer.classList.add('is-open');
     burger.classList.add('open');
     burger.setAttribute('aria-expanded','true');
-    document.body.style.overflow='hidden';
+    document.body.style.overflow = 'hidden';
   }
   function closeMenu(){
-    nav.classList.remove('nav-open');
+    overlay.classList.remove('is-open');
+    drawer.classList.remove('is-open');
     burger.classList.remove('open');
     burger.setAttribute('aria-expanded','false');
-    document.body.style.overflow='';
+    document.body.style.overflow = '';
   }
   burger.addEventListener('click', openMenu);
-  if(overlay) overlay.addEventListener('click', closeMenu);
-  document.querySelector('.mob-close').addEventListener('click', closeMenu);
-  document.querySelectorAll('.mob-nav a, .mob-cta-btn').forEach(function(a){
+  overlay.addEventListener('click', closeMenu);
+  drawer.querySelector('.mob-close').addEventListener('click', closeMenu);
+  drawer.querySelectorAll('.mob-nav a, .mob-cta-btn').forEach(function(a){
     a.addEventListener('click', closeMenu);
   });
 })();
