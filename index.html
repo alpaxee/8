@@ -84,11 +84,16 @@ img { max-width: 100%; }
   overflow: hidden;
   padding: 100px 24px 60px;
 }
-#meshCanvas {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  z-index: 0;
-}
+.mesh-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+.mesh-blob{position:absolute;border-radius:50%;filter:blur(72px)}
+.blob1{width:60%;height:60%;top:-10%;left:5%;background:rgba(193,96,46,.14);animation:mb1 14s ease-in-out infinite alternate}
+.blob2{width:65%;height:65%;top:25%;right:-15%;background:rgba(216,175,149,.19);animation:mb2 17s ease-in-out infinite alternate}
+.blob3{width:50%;height:50%;bottom:-15%;left:15%;background:rgba(240,149,90,.11);animation:mb3 20s ease-in-out infinite alternate}
+.blob4{width:45%;height:45%;top:35%;left:-10%;background:rgba(140,111,92,.13);animation:mb4 22s ease-in-out infinite alternate}
+@keyframes mb1{from{transform:translate(0,0) scale(1)}to{transform:translate(9%,13%) scale(1.12)}}
+@keyframes mb2{from{transform:translate(0,0) scale(1)}to{transform:translate(-11%,-9%) scale(1.06)}}
+@keyframes mb3{from{transform:translate(0,0) scale(1)}to{transform:translate(13%,-11%) scale(1.14)}}
+@keyframes mb4{from{transform:translate(0,0) scale(1)}to{transform:translate(9%,16%) scale(1.09)}}
 .hero-content {
   position: relative; z-index: 2;
   text-align: center;
@@ -777,15 +782,20 @@ footer {
     <li><a href="blog.html">Блог</a></li>
     <li><a href="careers.html">Вакансии</a></li>
   
-    <li class="nav-cta-mobile-li" style="display:none"><a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="nav-cta-mobile">Запросить демо</a></li>
+    <li class="nav-cta-mobile-li" style="display:none"><a href="order.html" class="nav-cta-mobile">Запросить демо</a></li>
   </ul>
-  <a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="nav-cta">Запросить демо</a>
+  <a href="order.html" class="nav-cta">Запросить демо</a>
 <button class="nav-burger" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
 </header>
 
 <!-- ══════════════ HERO: MESH GRADIENT ══════════════ -->
 <section class="hero">
-  <canvas id="meshCanvas"></canvas>
+  <div class="mesh-bg" aria-hidden="true">
+    <div class="mesh-blob blob1"></div>
+    <div class="mesh-blob blob2"></div>
+    <div class="mesh-blob blob3"></div>
+    <div class="mesh-blob blob4"></div>
+  </div>
   <div class="hero-content">
     <div class="hero-eyebrow">SaaS-платформа для салонов красоты</div>
     <h1>Салон красоты,<br>собранный<br><em>в одном экране</em></h1>
@@ -794,7 +804,7 @@ footer {
     </p>
     <div class="cta-row">
       <a href="platform.html" class="btn-primary">Смотреть платформу</a>
-      <a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="btn-ghost">Запросить демо</a>
+      <a href="order.html" class="btn-ghost">Запросить демо</a>
     </div>
   </div>
   <div class="hero-stats">
@@ -1098,7 +1108,7 @@ footer {
               <div class="mock-cta">
                 <div class="mock-cta-big">Программа<br>лояльности</div>
                 <div class="mock-cta-sub">Баллы, скидки и история визитов — в одном профиле клиента</div>
-                <a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="mock-cta-btn">Запросить демо</a>
+                <a href="order.html" class="mock-cta-btn">Запросить демо</a>
               </div>
             </div>
           </div>
@@ -1225,7 +1235,7 @@ footer {
 <section class="cta-dark">
   <h2>Посмотрите, как BlushNest наводит порядок в&nbsp;салоне</h2>
   <p>Расскажем про платформу, покажем модули вживую и обсудим задачи именно вашей сети или салона.</p>
-  <a href="mailto:hello@blushnest.io?subject=Демо%20BlushNest" class="btn-primary">Написать о демо</a>
+  <a href="order.html" class="btn-primary">Написать о демо</a>
 </section>
 
 <!-- ══════════════ FOOTER ══════════════ -->
@@ -1260,7 +1270,7 @@ footer {
   </div>
 <!-- LEGAL_FOOTER -->
     <div style="border-top:1px solid rgba(255,255,255,.06);margin-top:16px;padding-top:14px;text-align:center">
-      <a href="privacy.html" target="_blank" rel="noopener" style="font-size:11px;color:rgba(216,175,149,.28);text-decoration:none;line-height:1.6" onmouseover="this.style.color='rgba(216,175,149,.55)'" onmouseout="this.style.color='rgba(216,175,149,.28)'">ООО «Цифровые Технологии» &middot; ИНН 7736252313 &middot; ОГРН 1157746819966 &middot; 117312, г. Москва, ул. Вавилова, д. 19 &middot; Политика конфиденциальности</a>
+      <span style="font-size:11px;color:rgba(216,175,149,.28);line-height:1.6">ООО «Цифровые Технологии» &middot; ИНН 7736252313 &middot; ОГРН 1157746819966 &middot; 117312, г. Москва, ул. Вавилова, д. 19</span>
     </div>
 </footer>
 
@@ -1269,46 +1279,7 @@ footer {
 (function() {
   gsap.registerPlugin(ScrollTrigger);
 
-  /* ── MODULE 1: MESH GRADIENT (hero) ── */
-  (function() {
-    var canvas = document.getElementById('meshCanvas');
-    var ctx = canvas.getContext('2d');
-    var blobs = [
-      { x: .3, y: .2, vx:  .3, vy:  .2, r: .38, color: 'rgba(193,96,46,.13)' },
-      { x: .7, y: .6, vx: -.25, vy: .3, r: .42, color: 'rgba(216,175,149,.18)' },
-      { x: .5, y: .8, vx:  .2, vy: -.25, r: .35, color: 'rgba(240,149,90,.10)' },
-      { x: .15, y: .7, vx: .28, vy: -.2, r: .30, color: 'rgba(140,111,92,.12)' },
-    ];
-    function resize() {
-      canvas.width  = canvas.offsetWidth  * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    function draw() {
-      var w = canvas.width, h = canvas.height;
-      ctx.fillStyle = '#FBF3EC';
-      ctx.fillRect(0, 0, w, h);
-      blobs.forEach(function(b) {
-        b.x += b.vx / w * .6;
-        b.y += b.vy / h * .6;
-        if (b.x < -.1 || b.x > 1.1) b.vx *= -1;
-        if (b.y < -.1 || b.y > 1.1) b.vy *= -1;
-        var grd = ctx.createRadialGradient(
-          b.x * w, b.y * h, 0,
-          b.x * w, b.y * h, b.r * Math.max(w, h)
-        );
-        grd.addColorStop(0, b.color);
-        grd.addColorStop(1, 'transparent');
-        ctx.globalCompositeOperation = 'multiply';
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, w, h);
-        ctx.globalCompositeOperation = 'source-over';
-      });
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
+  /* hero background: CSS animated blobs (see .mesh-bg) */
 
   /* ── HERO ENTRANCE ANIMATION ── */
   var heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
