@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности — BlushNest</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<style>
+:root{--cream:#FBF3EC;--cream2:#FBEEE4;--border:#EFE0D3;--sand:#D8AF95;--muted:#8C6F5C;--accent:#C1602E;--peach:#F0955A;--text:#2B1B12;--dark:#2A150C;--serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,sans-serif}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(251,243,236,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(239,224,211,.5)}
+.nav-logo{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+.nav-logo em{color:var(--accent);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;color:var(--muted);text-decoration:none;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--accent);color:#fff;font-size:13px;font-weight:500;padding:9px 20px;border-radius:8px;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+@media(max-width:700px){.nav{padding:14px 20px}.nav-links{display:none}}
+
+/* MOBILE BURGER */
+.nav-cta-mobile-li{display:none}
+.nav-burger{display:none;background:none;border:none;cursor:pointer;padding:6px;flex-direction:column;justify-content:center;gap:5px;z-index:300;position:relative}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform .3s,opacity .25s}
+.mob-overlay{position:fixed;inset:0;z-index:250;background:rgba(43,27,18,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-drawer{position:fixed;top:0;right:0;bottom:0;z-index:260;width:min(300px,88vw);background:var(--cream);padding:28px 28px 40px;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 40px rgba(43,27,18,.12)}
+.mob-drawer-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px}
+.mob-drawer-logo{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);text-decoration:none}
+.mob-drawer-logo em{color:var(--accent);font-style:normal}
+.mob-close{background:none;border:none;cursor:pointer;padding:6px;line-height:1;color:var(--muted);font-size:22px}
+.mob-nav{list-style:none;flex:1}
+.mob-nav li{border-bottom:1px solid var(--border)}
+.mob-nav a{display:block;padding:16px 0;font-size:16px;font-weight:500;color:var(--text);text-decoration:none;transition:color .2s}
+.mob-nav a:hover{color:var(--accent)}
+.mob-cta-btn{display:block;margin-top:28px;background:var(--accent);color:#fff;text-align:center;padding:14px 20px;border-radius:10px;font-size:15px;font-weight:500;text-decoration:none;transition:opacity .2s}
+.mob-cta-btn:hover{opacity:.85}
+@media(max-width:700px){
+  .nav-burger{display:flex}
+  .nav-cta{display:none}
+}
+.mob-overlay.is-open{opacity:1;pointer-events:all}
+.mob-drawer.is-open{transform:translateX(0)}
+.nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* PAGE */
+.page-wrap{padding:108px 24px 80px;max-width:760px;margin:0 auto}
+.page-eyebrow{font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.page-title{font-family:var(--serif);font-size:clamp(28px,5vw,44px);font-weight:600;letter-spacing:-.025em;line-height:1.15;margin-bottom:8px}
+.page-date{font-size:13px;color:var(--muted);margin-bottom:48px}
+
+/* CONTENT */
+.doc-section{margin-bottom:40px}
+.doc-section h2{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--text);margin-bottom:14px;letter-spacing:-.015em}
+.doc-section p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:12px}
+.doc-section ul{padding-left:20px;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+.doc-section ul li{font-size:15px;color:var(--muted);line-height:1.65}
+.doc-section a{color:var(--accent);text-decoration:none}
+.doc-section a:hover{text-decoration:underline}
+.divider{height:1px;background:var(--border);margin:40px 0}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid rgba(255,255,255,.06);padding:32px 40px 24px}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:var(--serif);font-size:18px;font-weight:600;color:#FAF0E9;text-decoration:none}
+.footer-logo em{color:var(--peach);font-style:normal}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{font-size:13px;color:rgba(216,175,149,.55);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--sand)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a href="index.html" class="nav-logo">Blush<em>Nest</em></a>
+  <ul class="nav-links">
+    <li><a href="platform.html">Платформа</a></li>
+    <li><a href="pricing.html">Тарифы</a></li>
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="blog.html">Блог</a></li>
+    <li><a href="careers.html">Вакансии</a></li>
+  </ul>
+  <a href="order.html" class="nav-cta">Начать работу</a>
+  <button class="nav-burger" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<main class="page-wrap">
+  <div class="page-eyebrow">Документы</div>
+  <h1 class="page-title">Политика конфиденциальности</h1>
+  <p class="page-date">Редакция от 1 сентября 2026 года</p>
+
+  <div class="doc-section">
+    <p>Настоящая Политика конфиденциальности описывает, какие данные собирает BlushNest при использовании платформы и сайта, как мы их используем и как защищаем.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="doc-section">
+    <h2>1. Какие данные мы собираем</h2>
+    <p>При регистрации и работе с платформой мы можем собирать следующие данные:</p>
+    <ul>
+      <li>Контактные данные: имя, адрес электронной почты, номер телефона.</li>
+      <li>Данные о компании: название салона, город.</li>
+      <li>Данные клиентов салона, которые вы вносите в систему (имена, телефоны, история записей).</li>
+      <li>Технические данные: IP-адрес, тип браузера, страницы сайта, которые вы посещаете.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>2. Как мы используем данные</h2>
+    <p>Собранные данные используются исключительно для:</p>
+    <ul>
+      <li>Предоставления доступа к платформе и её функциям.</li>
+      <li>Технической поддержки и ответов на ваши обращения.</li>
+      <li>Отправки уведомлений об обновлениях сервиса (только с вашего согласия).</li>
+      <li>Улучшения качества работы платформы на основе агрегированной статистики.</li>
+    </ul>
+    <p>Мы не продаём, не передаём и не раскрываем ваши персональные данные третьим лицам в коммерческих целях.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>3. Хранение и защита данных</h2>
+    <p>Все данные хранятся на защищённых серверах на территории Российской Федерации. Мы применяем шифрование при передаче данных (TLS/HTTPS), ограничиваем доступ к базам данных и регулярно проводим аудит безопасности.</p>
+    <p>Данные клиентов вашего салона являются вашей собственностью. Мы выступаем лишь оператором хранения и не используем их в своих целях.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>4. Файлы cookie</h2>
+    <p>Сайт использует технические cookie для обеспечения корректной работы. Мы не используем рекламные или отслеживающие файлы cookie третьих сторон.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>5. Ваши права</h2>
+    <p>Вы вправе в любой момент:</p>
+    <ul>
+      <li>Запросить доступ к своим персональным данным.</li>
+      <li>Потребовать исправления или удаления данных.</li>
+      <li>Отозвать согласие на обработку данных.</li>
+      <li>Экспортировать данные своего салона.</li>
+    </ul>
+    <p>Для реализации любого из этих прав свяжитесь с нами по адресу <a href="mailto:hello@blushnest.io">hello@blushnest.io</a>.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>6. Изменения политики</h2>
+    <p>Мы можем обновлять настоящую Политику конфиденциальности. О существенных изменениях мы уведомим вас по электронной почте или через уведомление в платформе. Продолжение использования сервиса после обновления означает ваше согласие с новой редакцией.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="doc-section">
+    <p>По вопросам, связанным с обработкой персональных данных, пишите нам: <a href="mailto:hello@blushnest.io">hello@blushnest.io</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">Blush<em>Nest</em></a>
+    <div class="footer-links">
+      <a href="privacy.html">Политика конфиденциальности</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </div>
+<!-- LEGAL_FOOTER -->
+  <div style="border-top:1px solid rgba(255,255,255,.06);margin-top:16px;padding-top:14px;text-align:center">
+    <span style="font-size:11px;color:rgba(216,175,149,.28);line-height:1.6">© 2026 BlushNest. Все права защищены.</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var burger  = document.querySelector('.nav-burger');
+  var overlay = document.querySelector('.mob-overlay');
+  var drawer  = document.querySelector('.mob-drawer');
+  if(!burger || !overlay || !drawer) return;
+  function openMenu(){
+    overlay.classList.add('is-open');
+    drawer.classList.add('is-open');
+    burger.classList.add('open');
+    burger.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu(){
+    overlay.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', openMenu);
+  overlay.addEventListener('click', closeMenu);
+  var closeBtn = drawer.querySelector('.mob-close');
+  if(closeBtn) closeBtn.addEventListener('click', closeMenu);
+  drawer.querySelectorAll('.mob-nav a, .mob-cta-btn').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+});
+</script>
+
+<div class="mob-overlay"></div>
+<div class="mob-drawer" role="dialog" aria-label="Навигация">
+  <div class="mob-drawer-top">
+    <a href="index.html" class="mob-drawer-logo">Blush<em>Nest</em></a>
+    <button class="mob-close" aria-label="Закрыть меню">&#x2715;</button>
+  </div>
+  <ul class="mob-nav">
+    <li><a href="platform.html">Платформа</a></li>
+    <li><a href="pricing.html">Тарифы</a></li>
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="blog.html">Блог</a></li>
+    <li><a href="careers.html">Вакансии</a></li>
+    <li><a href="contacts.html">Контакты</a></li>
+  </ul>
+  <a href="order.html" class="mob-cta-btn">Запросить демо</a>
+</div>
+</body>
+</html>
